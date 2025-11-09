@@ -1,0 +1,9 @@
+flask
+requests
+beautifulsoup4
+tldextract
+whois
+spacy
+transformers
+torch
+bs4

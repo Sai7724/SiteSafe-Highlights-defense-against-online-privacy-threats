@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Privacy Advisor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      text-align: center;
+      padding: 30px;
+    }
+    form {
+      margin-top: 40px;
+    }
+    input[type="text"] {
+      width: 60%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .loader {
+      display: none;
+      margin-top: 30px;
+      font-size: 18px;
+      color: #333;
+    }
+    .loader:after {
+      content: '🍳 Cooking your URL... Please wait...';
+      animation: blink 1.5s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .result {
+      margin-top: 40px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 25px;
+      text-align: left;
+      width: 70%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    pre {
+      background: #f0f0f0;
+      padding: 10px;
+      border-radius: 10px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔒 Web-Based Digital Privacy Advisor</h1>
+  <form id="urlForm" method="POST">
+    <input type="text" name="url" placeholder="Enter website URL (e.g. https://example.com)" required>
+    <button type="submit">Analyze</button>
+  </form>
+
+  <div class="loader" id="loader"></div>
+
+  {% if report %}
+  <div class="result">
+    <h2>Privacy Analysis Result</h2>
+    <p><strong>Status:</strong> {{ report.status }}</p>
+    <p><strong>HTTPS:</strong> {{ report.https }}</p>
+    <p><strong>Trackers:</strong> {{ report.trackers }}</p>
+    <p><strong>AI Risk:</strong> {{ report.policy_ai }}</p>
+    <p><strong>Policy Summary:</strong><br><pre>{{ report.policy_summary }}</pre></p>
+    <p><strong>Domain Age:</strong> {{ report.domain_age }}</p>
+    <p><strong>Registrar:</strong> {{ report.registrar }}</p>
+    <h3>{{ report.final }}</h3>
+  </div>
+  {% endif %}
+
+  <script>
+    const form = document.getElementById("urlForm");
+    const loader = document.getElementById("loader");
+    form.addEventListener("submit", () => {
+      loader.style.display = "block";
+    });
+  </script>
+</body>
+</html>

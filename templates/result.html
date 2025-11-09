@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Privacy Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Privacy Report for {{ url }}</h1>
+
+        <div class="report">
+            <p><strong>Status:</strong> {{ report['status'] }}</p>
+            <p><strong>HTTPS:</strong> {{ report['https'] }}</p>
+            <p><strong>Trackers:</strong> {{ report['trackers'] }}</p>
+            <p><strong>Domain Age:</strong> {{ report['domain_age'] }}</p>
+            <p><strong>Registrar:</strong> {{ report['registrar'] }}</p>
+            <p><strong>Privacy Policy AI Analysis:</strong> {{ report['policy_ai'] }}</p>
+            <hr>
+            <h3>{{ report['final'] }}</h3>
+        </div>
+
+        <a href="/">← Check another site</a>
+    </div>
+</body>
+</html>
